@@ -3,7 +3,8 @@
     package="com.example.coupon">
 
     <application>
-        <activity android:name=".ui.activity.CouponActivity"></activity>
+        <activity android:name=".ui.activity.CouponListActivity"></activity>
+        <activity android:name=".ui.activity.CouponActivity" />
     </application>
 
 </manifest>
