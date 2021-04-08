@@ -1,0 +1,48 @@
+apply from: rootProject.file('config.gradle')
+if (appIsApp){
+    apply plugin: 'com.android.application'
+}else {
+    apply plugin: 'com.android.library'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "29.0.3"
+    /*解决多个模块之间的资源名称冲突*/
+    resourcePrefix "app_"
+
+    defaultConfig {
+        applicationId "com.example.testapplication"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    /*在模块作为app单独运行时，不进行依赖*/
+    if(!couponIsApp) runtimeOnly project(path: ':Coupon')
+    if (!userIsApp) runtimeOnly project(path: ':UserCenter')
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation project(path: ':Baselibrary')
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
