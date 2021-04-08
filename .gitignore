@@ -26,3 +26,10 @@ gradle/
 gradlew
 gradlew.bat
 #settings.gradle
+#Baselibrary/libs/
+#Baselibrary/src/main/java/
+#Baselibrary/src/main/res/res/
+#Coupon/libs/
+#UserCenter/libs/
+#app/libs/
+#app/src/main/res/values-night/
